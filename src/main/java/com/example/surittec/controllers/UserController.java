@@ -59,7 +59,7 @@ public class UserController {
 	}
 
 	@PutMapping(path = "/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UserDTO userDto)
+	public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody UserDTO userDto)
 			throws ObjectNotFoundException {
 		User userUpdate = userDto.userDtoToUser();
 		User user = userService.findById(id);
