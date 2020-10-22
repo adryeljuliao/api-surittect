@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import com.example.surittec.models.enums.TypeUser;
 
 @Entity
-@Table
+@Table(name = "s_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
