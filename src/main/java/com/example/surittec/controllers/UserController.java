@@ -48,7 +48,7 @@ public class UserController {
 		userService.save(user); 
 		user.getListPhone().stream().forEach(phone -> phoneService.save(phone));
 
-		return ResponseEntity.ok().body(user.getListEmail());
+		return ResponseEntity.ok().body(user);
 	}
 	
 	@GetMapping(path = "/{id}")
