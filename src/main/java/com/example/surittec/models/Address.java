@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name = "address")
-@Table(name = "address")
+@Entity
+@Table
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;

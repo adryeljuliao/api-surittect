@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import com.example.surittec.models.enums.TypePhone;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name = "phone")
-@Table(name = "phone")
+@Entity
+@Table
 public class Phone implements Serializable {
 
 	private static final long serialVersionUID = 1L;
