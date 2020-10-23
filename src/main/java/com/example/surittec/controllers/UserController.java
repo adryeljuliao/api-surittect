@@ -2,7 +2,6 @@ package com.example.surittec.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -20,13 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.surittec.models.User;
-import com.example.surittec.models.dtos.LoginDTO;
 import com.example.surittec.models.dtos.UserDTO;
 import com.example.surittec.services.PhoneService;
 import com.example.surittec.services.UserService;
 import com.example.surittec.services.exceptions.ObjectNotFoundException;
-
-import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 @RequestMapping(path = "/users")
