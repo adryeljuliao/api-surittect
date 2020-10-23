@@ -2,7 +2,7 @@ package com.example.surittec.models.enums;
 
 public enum TypeUser {
 	
-	ADMINISTRATOR(0, "Administrador"),
+	ADMIN(0, "Administrador"),
 	CLIENT(1, "Cliente");
 	
 	private int code;

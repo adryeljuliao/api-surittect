@@ -12,13 +12,13 @@ public enum TypePhone {
 	private TypePhone(int code, String description) {
 		this.code = code;
 		this.description = description;
-	}
+	} 
 
 	public int getCode() {
 		return code;
 	}
 
-	public String getDescription() {
+	public String getDescription() { 
 		return description;
 	}
 	

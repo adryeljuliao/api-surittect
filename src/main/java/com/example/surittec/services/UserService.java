@@ -37,6 +37,21 @@ public class UserService {
 		Optional<User> user = userRepository.findById(id);
 		return user.orElse(null);
 	}
+	
+	public User findByCpfAndPassword(String cpf, String password) {
+		User user = userRepository.findByCpfAndPassword(cpf, password);
+		return user;
+	}
+	
+	public User findByCpf(String cpf) {
+		User user = userRepository.findByCpf(cpf);
+		return user;
+	}
+	
+	public List<User> findAllUsers(Integer userType) {
+		 
+		return userRepository.findByUserType(userType);
+	}
 
 	public User update(User user) {
 		return userRepository.save(user);

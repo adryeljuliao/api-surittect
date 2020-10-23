@@ -2,6 +2,7 @@ package com.example.surittec.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,10 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.surittec.models.User;
+import com.example.surittec.models.dtos.LoginDTO;
 import com.example.surittec.models.dtos.UserDTO;
 import com.example.surittec.services.PhoneService;
 import com.example.surittec.services.UserService;
 import com.example.surittec.services.exceptions.ObjectNotFoundException;
+
+import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -35,28 +39,40 @@ public class UserController {
 	@Autowired
 	private PhoneService phoneService;
 
-	@GetMapping
-	private @ResponseBody ResponseEntity<?> findAllUsers() {
-		List<User> users = userService.findAll();
+	@GetMapping(path = "/all")
+	private @ResponseBody ResponseEntity<?> index() {
+		List<User> users = userService.findAllUsers(1);
+
+		users.stream().forEach(user -> user.setPassword(null));
 		return ResponseEntity.ok().body(users);
 	}
 
 	@PostMapping
-	public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDto) {
+	public ResponseEntity<?> store(@Valid @RequestBody UserDTO userDto) {
 		User user = userDto.userDtoToUser();
 
-		userService.save(user); 
+		userService.save(user);
 		user.getListPhone().stream().forEach(phone -> phoneService.save(phone));
 
+		user.setPassword(null);
 		return ResponseEntity.ok().body(user);
 	}
-	
+
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<?> findById(@PathVariable Long id) {
+	public ResponseEntity<?> showById(@PathVariable Long id) {
 		User user = userService.findById(id);
-		
+		user.setPassword(null);
 		return ResponseEntity.ok().body(user);
 	}
+
+//	@GetMapping
+//	public ResponseEntity<?> show(@RequestBody String cpf) {
+//		User user = userService.findByCpf(cpf.trim());
+//		if (user == null) {
+//			return ResponseEntity.badRequest().body("Erro ao se autenticar no sistema");
+//		}
+//		return ResponseEntity.ok().body(user);
+//	}
 
 	@PutMapping(path = "/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody UserDTO userDto)

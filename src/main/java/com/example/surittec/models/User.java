@@ -33,6 +33,7 @@ public class User implements Serializable {
 	private String name;
 	private Integer userType;
 	private String cpf;
+	private String password;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	private Address address;
@@ -53,12 +54,13 @@ public class User implements Serializable {
 		listEmail = new HashSet<>();
 	}
 
-	public User(String name, TypeUser userType, String cpf, Address address) {
+	public User(String name, TypeUser userType, String cpf, String password, Address address) {
 		super();
 		this.name = name;
 		this.userType = userType.getCode();
 		this.cpf = cpf;
 		this.address = address;
+		this.password = password;
 	}
 
 	public void addPhone(Phone phone) {
@@ -80,6 +82,14 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public TypeUser getUserType() {

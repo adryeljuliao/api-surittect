@@ -47,6 +47,7 @@ public class UserDTO {
 
 		user.setName(name);
 		user.setCpf(cpf);
+		user.setPassword("123456");
 		Address address = convertAddress();
 		user.setAddress(address);
 		address.setUser(user);
